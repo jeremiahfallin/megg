@@ -18,7 +18,9 @@ Inside the `docker-compose.yaml` file, you can change the Postgres database cred
 Then, simply run `docker-compose up -d --build` to create and start the containers.
 
 The frontend is reachable at [http://localhost:3000](http://localhost:3000) with your browser.
+
 The keystone backend is reachable at [http://localhost:8000](http://localhost:8000) with your browser.
+
 The graphql playground is reachable at [http://localhost:8000/api/graphql](http://localhost:8000/api/graphql).
 
 Files in the frontend or backend folders should automatically update when you make changes to the code.
