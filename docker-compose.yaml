@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_USER=superuser
+      - POSTGRES_PASSWORD=supersecret
+      - POSTGRES_DB=megg
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bridgenet
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  keystone:
+    build:
+      context: ./keystone
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 8000:3000
+    volumes:
+      - ./keystone:/app
+      - ./keystone/keystone.ts:/app/keystone.ts
+      - /app/.keystone
+      - /app/node_modules
+      - ./keystone/schema.graphql:/app/schema.graphql
+      - ./keystone/schema.prisma:/app/schema.prisma
+    networks:
+      - bridgenet
+    env_file:
+      - .env
+  frontend:
+    build:
+      context: ./frontend
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - bridgenet
+  # backend:
+  #   build:
+  #     context: ./backend
+  #   restart: always
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   volumes:
+  #     - ./backend:/app
+  #     - /app/node_modules
+  #   networks:
+  #     - bridgenet
+  #   env_file:
+  #     - .env
+
+networks:
+  bridgenet:
+    name: custom_network
