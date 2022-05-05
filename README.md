@@ -11,7 +11,7 @@ It also uses the postgres docker container to run the database.
 Me.gg is a personal League of Legends stats app meant to compile player stats and fill some of the void (i.e. it has some of the same statistics) left by legends.ai going down.
 
 After you have the app running you should have something like this (UI is WIP):
-![image](https://user-images.githubusercontent.com/18542660/167005890-ef9a1385-3ebb-4f53-9ab1-c4bc19dfd663.png)
+![image](https://user-images.githubusercontent.com/18542660/167006363-453a4e02-9c36-4023-b922-6fd8e6b7b465.png)
 
 ## Getting Started
 
