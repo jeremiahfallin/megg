@@ -501,16 +501,16 @@ const markSeedIdentifierRetrieved = async ({ id }) => {
 };
 
 async function main() {
-  await prisma.seedIdentifier.deleteMany({});
-  await prisma.player.deleteMany({});
-  await prisma.game.deleteMany({});
-  await prisma.runeSelection.deleteMany({});
-  await prisma.runeStyle.deleteMany({});
-  await prisma.team.deleteMany({});
-  await prisma.playerRune.deleteMany();
-  await prisma.playerEndOfGameStat.deleteMany({});
-  await prisma.objective.deleteMany({});
-  await prisma.pickBan.deleteMany({});
+  // await prisma.seedIdentifier.deleteMany({});
+  // await prisma.player.deleteMany({});
+  // await prisma.game.deleteMany({});
+  // await prisma.runeSelection.deleteMany({});
+  // await prisma.runeStyle.deleteMany({});
+  // await prisma.team.deleteMany({});
+  // await prisma.playerRune.deleteMany();
+  // await prisma.playerEndOfGameStat.deleteMany({});
+  // await prisma.objective.deleteMany({});
+  // await prisma.pickBan.deleteMany({});
 
   let constantsData = await prisma.constant.findFirst();
   if (!constantsData) {
