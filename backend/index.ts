@@ -20,7 +20,8 @@ const getSummonerDataFromRiot = async ({ id, constantsData }) => {
       console.error(err);
       return;
     });
-    const summoner = summonerResponse.response;
+    const summoner = summonerResponse?.response;
+    if (!summoner) return;
     handleRetrievedSummoner({ id, summoner, constantsData });
   } else if (id.type === "idPUUID") {
     const summonerResponse = await api.Summoner.getByPUUID(
@@ -31,7 +32,8 @@ const getSummonerDataFromRiot = async ({ id, constantsData }) => {
       console.error(err);
       return;
     });
-    const summoner = summonerResponse.response;
+    const summoner = summonerResponse?.response;
+    if (!summoner) return;
     handleRetrievedSummoner({ id, summoner, constantsData });
   } else if (id.type === "idSummonerName") {
     const summonerResponse = await api.Summoner.getByName(
@@ -42,7 +44,8 @@ const getSummonerDataFromRiot = async ({ id, constantsData }) => {
       console.error(err);
       return;
     });
-    const summoner = summonerResponse.response;
+    const summoner = summonerResponse?.response;
+    if (!summoner) return;
     handleRetrievedSummoner({ id, summoner, constantsData });
   }
 };
@@ -98,7 +101,7 @@ const handleRetrievedSummoner = async ({ id, summoner, constantsData }) => {
       ).catch((err) => {
         console.error(err);
       });
-      const newMatchIds = newMatchIdsRequest.response;
+      const newMatchIds = newMatchIdsRequest?.response;
       process.stdout.write(
         `${summoner?.puuid} new matches: ${newMatchIds?.length}`
       );
@@ -130,7 +133,7 @@ const getMatchDataFromRiot = async ({ id, constantsData }) => {
   ).catch((err) => {
     console.error(err);
   });
-  const match = matchRequest.response;
+  const match = matchRequest?.response;
   try {
     if (match?.info.gameVersion.startsWith(constantsData.currentSeason)) {
       await createSeedIdentifiers({
@@ -527,7 +530,8 @@ async function main() {
       Constants.Queues.RANKED_SOLO_5x5,
       Constants.Regions.AMERICA_NORTH
     );
-    const challengers = challengersResponse.response;
+    const challengers = challengersResponse?.response;
+    if (!challengers) return;
     await getSummonerDataFromRiot({
       id: {
         identifier: challengers.entries[0].summonerId,

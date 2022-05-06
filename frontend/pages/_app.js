@@ -1,3 +1,6 @@
+import "@fontsource/zen-kurenaido/400.css";
+import "@fontsource/zen-maru-gothic/400.css";
+
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import {
   createClient,

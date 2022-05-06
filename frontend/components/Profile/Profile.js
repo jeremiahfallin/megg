@@ -44,8 +44,15 @@ export default function Profile({ player }) {
       >
         Refetch
       </Button>
-      <Heading>{player.summonerName}</Heading>
-      <GridItem>{profile.lastUpdate}</GridItem>
+      <Flex p={4} direction="column">
+        <Heading>{player.summonerName}</Heading>
+        <GridItem>
+          Last Update:{" "}
+          {new Intl.DateTimeFormat("en", {
+            dateStyle: "full",
+          }).format(new Date(profile.lastUpdate))}
+        </GridItem>
+      </Flex>
 
       <PlayerStats
         stats={{

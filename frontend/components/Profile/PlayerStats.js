@@ -32,7 +32,9 @@ export default function PlayerStats({ stats }) {
         <Tooltip label="Average game time">
           <Box>
             <Box fontSize={"sm"}>AGT</Box>
-            <Box fontSize={"2xl"}>{stats.averageGameTime}</Box>
+            <Box fontSize={"2xl"}>
+              {parseFloat(stats.averageGameTime).toFixed(2)}
+            </Box>
           </Box>
         </Tooltip>
         <Tooltip label="Average time spent dead per game">
